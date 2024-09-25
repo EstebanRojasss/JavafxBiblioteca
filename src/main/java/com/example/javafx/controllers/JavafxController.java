@@ -19,7 +19,8 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-@Component @Data
+@Component
+@Data
 public class JavafxController implements Initializable {
 
     @FXML
@@ -82,13 +83,24 @@ public class JavafxController implements Initializable {
     @Autowired
     LibroService libroService;
 
+
     @FXML
     void agregarDatosLibro(ActionEvent event) {
         agregarDatosLibro();
     }
 
-    void agregarDatosLibro(){
-        try{
+    @FXML
+    void eliminarDatosLibro(ActionEvent event) {
+        eliminarDatosLibro();
+    }
+
+    @FXML
+    void actualizarDatosLibro(ActionEvent event) {
+        actualizarDatosLibro();
+    }
+
+    void agregarDatosLibro() {
+        try {
             Libro libro = new Libro();
             libro.setTitulo(txtTitulo.getText());
             libro.setIsbn(Integer.valueOf(txtISBN.getText()));
@@ -102,21 +114,37 @@ public class JavafxController implements Initializable {
             libroService.guardarDatosLibro(libro);
             actualizarTabla();
             limpiarCampo();
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Se ingreso un tipo de dato incorrecto.");
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Ocurrio un error");
         }
     }
 
+    void actualizarDatosLibro() {
+        try {
+            //el libro de aca se implementa mediante el objeto seleccionado en el front----;
+            Libro libro = tblLibros.getSelectionModel().getSelectedItem();
+            libro.setTitulo(txtTitulo.getText());
+            libro.setAnio(Integer.valueOf(txtAnio.getText()));
+            libro.setIsbn(Integer.valueOf(txtISBN.getText()));
+            libro.setEditorialNombre(txtEditorial.getText());
+            libro.setAutorNombre(txtAutor.getText());
+            libro.setEjemplares(Integer.valueOf(txtEjemplares.getText()));
+            libro.setEjemplaresRestantes(Integer.valueOf(txtEjempResta.getText()));
+            libro.setEjemplaresPrestados(Integer.valueOf(txtEjempPrest.getText()));
+            libroService.actualizarDatosLibro(libro);
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error en la capa de contronladores.");
+        }
 
+        actualizarTabla();
+        limpiarCampo();
 
-    @FXML
-    void eliminarDatosLibro(ActionEvent event) {
-        eliminarDatosLibro();
     }
 
-    void eliminarDatosLibro(){
+
+    void eliminarDatosLibro() {
         Libro libro = tblLibros.getSelectionModel().getSelectedItem();
         libroService.eliminarDatosLibro(libro);
         actualizarTabla();
@@ -124,19 +152,13 @@ public class JavafxController implements Initializable {
     }
 
 
-    @FXML
-    void actualizarDatosLibro(ActionEvent event) {
-
-    }
-
-
-
-    void actualizarTabla(){
+    void actualizarTabla() {
         tblLibros.getItems().clear();
         tblLibros.getItems().addAll(libroService.getRepository().findAll());
         tblLibros.refresh();
     }
-    void limpiarCampo(){
+
+    void limpiarCampo() {
         txtISBN.setText("");
         txtTitulo.setText("");
         txtAnio.setText("");
@@ -162,18 +184,18 @@ public class JavafxController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        colID.setCellValueFactory( new PropertyValueFactory<>("id"));
-        colISBN.setCellValueFactory( new PropertyValueFactory<>("isbn"));
-        colTitle.setCellValueFactory( new PropertyValueFactory<>("titulo"));
-        colAnio.setCellValueFactory( new PropertyValueFactory<>("anio"));
-        colEjemplares.setCellValueFactory( new PropertyValueFactory<>("ejemplares"));
-        colEjemPrest_.setCellValueFactory( new PropertyValueFactory<>("ejemplaresPrestados"));
-        colEjemRest_.setCellValueFactory( new PropertyValueFactory<>("ejemplaresRestantes"));
-        colAutor.setCellValueFactory( new PropertyValueFactory<>("autorNombre"));
-        colEditorial.setCellValueFactory( new PropertyValueFactory<>("editorialNombre"));
+        colID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("titulo"));
+        colAnio.setCellValueFactory(new PropertyValueFactory<>("anio"));
+        colEjemplares.setCellValueFactory(new PropertyValueFactory<>("ejemplares"));
+        colEjemPrest_.setCellValueFactory(new PropertyValueFactory<>("ejemplaresPrestados"));
+        colEjemRest_.setCellValueFactory(new PropertyValueFactory<>("ejemplaresRestantes"));
+        colAutor.setCellValueFactory(new PropertyValueFactory<>("autorNombre"));
+        colEditorial.setCellValueFactory(new PropertyValueFactory<>("editorialNombre"));
 
         tblLibros.setOnMouseClicked(mouseEvent -> {
-            if(tblLibros.getSelectionModel().getSelectedItem() != null) cargarCampo();
+            if (tblLibros.getSelectionModel().getSelectedItem() != null) cargarCampo();
         });
     }
 }

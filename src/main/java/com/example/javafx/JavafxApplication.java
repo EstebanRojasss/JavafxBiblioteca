@@ -17,8 +17,6 @@ public class JavafxApplication extends Application {
 
 	public static ConfigurableApplicationContext context;
 
-	@Autowired
-	public static Libro libro;
 
 
 	public static void main(String[] args) {
