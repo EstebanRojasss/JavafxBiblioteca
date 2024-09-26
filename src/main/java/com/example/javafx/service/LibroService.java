@@ -25,16 +25,6 @@ public class LibroService {
         }
     }
 
-    public Integer ejemplaresAPrestar(Libro libro){
-        if(libro.getEjemplaresPrestados() > 0 || libro.getEjemplares() >= libro.getEjemplaresPrestados()){
-            libro.setEjemplaresRestantes(libro.getEjemplares()-libro.getEjemplaresPrestados());
-        }
-        return libro.getEjemplaresRestantes();
-    }
-
-    public boolean libroEnAlta(Libro libro){
-        return libro.getEjemplaresRestantes() != 0;
-    }
 
     public void actualizarDatosLibro(Libro libro){
         try{
@@ -48,8 +38,6 @@ public class LibroService {
                     lib.setEjemplaresRestantes(libro.getEjemplaresRestantes());
                     lib.setEditorialNombre(libro.getEditorialNombre());
                     lib.setAutorNombre(libro.getAutorNombre());
-                    //Se utiliza el metodo libroEnAlta para setear el alta del libro seleccionado.
-                    lib.setAlta(libroEnAlta(libro));
                     repository.save(lib);
                 }
             }
@@ -66,4 +54,24 @@ public class LibroService {
         }
     }
 
+    private void ejemplaresAPrestar(Libro libro){
+        if(libro.getEjemplaresPrestados() > 0 || libro.getEjemplares() >= libro.getEjemplaresPrestados()){
+            libro.setEjemplaresRestantes(libro.getEjemplares()-libro.getEjemplaresPrestados());
+        }
+    }
+
+    private void libroEnAlta(Libro libro){
+        if(libro.getEjemplaresRestantes() == 0){
+            libro.setAlta(false);
+        }
+    }
+
+    public void alquilarLibro(Libro libro) {
+        if(libro.getAlta()){
+            libro.setEjemplaresPrestados(libro.getEjemplaresPrestados()+1);
+            ejemplaresAPrestar(libro);
+            libroEnAlta(libro);
+            repository.save(libro);
+        }
+    }
 }

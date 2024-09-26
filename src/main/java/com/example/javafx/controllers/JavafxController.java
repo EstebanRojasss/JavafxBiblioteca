@@ -106,6 +106,21 @@ public class JavafxController implements Initializable {
         actualizarDatosLibro();
     }
 
+    @FXML
+    void alquilarLibro(ActionEvent event) {
+        alquilarLibro();
+    }
+
+    void alquilarLibro(){
+        try{
+            Libro libro = tblLibros.getSelectionModel().getSelectedItem();
+            libroService.alquilarLibro(libro);
+            actualizarTabla();
+            limpiarCampo();
+        }catch (Exception e){
+            System.out.println("Ocurrio un error en la capa de controladores");
+        }
+    }
     void agregarDatosLibro() {
         try {
             Libro libro = new Libro();
@@ -123,7 +138,7 @@ public class JavafxController implements Initializable {
             System.out.println("Se ingreso un tipo de dato incorrecto.");
             mostrarWarning();
         } catch (Exception e) {
-            System.out.println("Ocurrio un error");
+            System.out.println("Ocurrio un error en la capa de contronladores");
         }
     }
 
@@ -203,7 +218,7 @@ public class JavafxController implements Initializable {
         colEjemRest_.setCellValueFactory(new PropertyValueFactory<>("ejemplaresRestantes"));
         colAutor.setCellValueFactory(new PropertyValueFactory<>("autorNombre"));
         colEditorial.setCellValueFactory(new PropertyValueFactory<>("editorialNombre"));
-
+        colAlta.setCellValueFactory( new PropertyValueFactory<>("alta"));
         tblLibros.setOnMouseClicked(mouseEvent -> {
             if (tblLibros.getSelectionModel().getSelectedItem() != null) cargarCampo();
         });
