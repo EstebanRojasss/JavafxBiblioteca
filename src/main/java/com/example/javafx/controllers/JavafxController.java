@@ -3,7 +3,6 @@ package com.example.javafx.controllers;
 
 import com.example.javafx.entities.Libro;
 import com.example.javafx.service.LibroService;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +27,9 @@ public class JavafxController implements Initializable {
 
     @FXML
     private TableColumn<Libro, Integer> colAnio;
+
+    @FXML
+    private TableColumn<Libro, Boolean> colAlta;
 
     @FXML
     private TableColumn<Libro, String> colAutor;
@@ -77,6 +79,7 @@ public class JavafxController implements Initializable {
     @FXML
     private TextField txtTitulo;
 
+
     @FXML
     private TableView<Libro> tblLibros;
 
@@ -108,7 +111,7 @@ public class JavafxController implements Initializable {
             libro.setEjemplares(Integer.valueOf(txtEjemplares.getText()));
             libro.setEjemplaresPrestados(Integer.valueOf(txtEjempPrest.getText()));
             libro.setEjemplaresRestantes(Integer.valueOf(txtEjempResta.getText()));
-            libro.setAlta(false);
+            libro.setAlta(true);
             libro.setAutorNombre(txtAutor.getText());
             libro.setEditorialNombre(txtEditorial.getText());
             libroService.guardarDatosLibro(libro);
@@ -134,13 +137,11 @@ public class JavafxController implements Initializable {
             libro.setEjemplaresRestantes(Integer.valueOf(txtEjempResta.getText()));
             libro.setEjemplaresPrestados(Integer.valueOf(txtEjempPrest.getText()));
             libroService.actualizarDatosLibro(libro);
+            actualizarTabla();
+            limpiarCampo();
         } catch (Exception e) {
             System.out.println("Ocurrio un error en la capa de contronladores.");
         }
-
-        actualizarTabla();
-        limpiarCampo();
-
     }
 
 

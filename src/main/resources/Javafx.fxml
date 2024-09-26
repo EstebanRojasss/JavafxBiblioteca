@@ -8,36 +8,42 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="614.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx.controllers.JavafxController">
+<AnchorPane fx:id="anchorPane" prefHeight="663.0" prefWidth="1184.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx.controllers.JavafxController">
    <children>
-      <Button layoutX="932.0" layoutY="558.0" mnemonicParsing="false" onAction="#eliminarDatosLibro" prefHeight="26.0" prefWidth="125.0" text="Eliminar Dato" />
-      <Label layoutX="471.0" layoutY="22.0" prefHeight="26.0" prefWidth="143.0" text="DATOS DEL LIBRO">
+      <Button layoutX="1042.0" layoutY="591.0" mnemonicParsing="false" onAction="#eliminarDatosLibro" prefHeight="26.0" prefWidth="125.0" text="Eliminar Dato" />
+      <Label layoutX="595.0" layoutY="29.0" prefHeight="26.0" prefWidth="143.0" text="DATOS DEL LIBRO">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="952.0" layoutY="129.0" mnemonicParsing="false" onAction="#agregarDatosLibro" prefHeight="26.0" prefWidth="105.0" text="Agregar " />
-      <Button layoutX="614.0" layoutY="558.0" mnemonicParsing="false" onAction="#actualizarDatosLibro" prefHeight="26.0" prefWidth="105.0" text="Actualizar Dato" />
-      <TextField fx:id="txtISBN" alignment="CENTER" layoutX="203.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="106.0" promptText="ISBN" />
-      <TextField fx:id="txtTitulo" alignment="CENTER" layoutX="21.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="182.0" promptText="TITULO" />
-      <TextField fx:id="txtAnio" alignment="CENTER" layoutX="309.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="91.0" promptText="AÑO" />
-      <TextField fx:id="txtEjemplares" alignment="CENTER" layoutX="399.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="91.0" promptText="EJEMPLARES" />
-      <TextField fx:id="txtAutor" alignment="CENTER" layoutX="722.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="154.0" promptText="Autor" />
-      <TextField fx:id="txtEditorial" alignment="CENTER" layoutX="876.0" layoutY="84.0" opacity="0.6" prefHeight="36.0" prefWidth="182.0" promptText="Editorial" />
-      <TextField fx:id="txtEjempResta" alignment="CENTER" layoutX="490.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="106.0" promptText="EjemplaresRestantes" />
-      <TextField fx:id="txtEjempPrest" alignment="CENTER" layoutX="596.0" layoutY="85.0" opacity="0.6" prefHeight="36.0" prefWidth="126.0" promptText="EjemplaresPrestados" />
-      <TableView fx:id="tblLibros" layoutX="20.0" layoutY="179.0" prefHeight="368.0" prefWidth="1038.0">
+      <Button layoutX="187.0" layoutY="591.0" mnemonicParsing="false" onAction="#agregarDatosLibro" prefHeight="26.0" prefWidth="105.0" text="Agregar " />
+      <Button layoutX="667.0" layoutY="591.0" mnemonicParsing="false" onAction="#actualizarDatosLibro" prefHeight="26.0" prefWidth="105.0" text="Actualizar Dato" />
+      <TextField fx:id="txtISBN" alignment="CENTER" layoutX="14.0" layoutY="160.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="ISBN" />
+      <TextField fx:id="txtTitulo" alignment="CENTER" layoutX="14.0" layoutY="107.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="TITULO" />
+      <TextField fx:id="txtAnio" alignment="CENTER" layoutX="14.0" layoutY="209.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="AÑO" />
+      <TextField fx:id="txtEjemplares" alignment="CENTER" layoutX="14.0" layoutY="262.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="EJEMPLARES" />
+      <TextField fx:id="txtAutor" alignment="CENTER" layoutX="14.0" layoutY="422.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="AUTOR" />
+      <TextField fx:id="txtEditorial" alignment="CENTER" layoutX="14.0" layoutY="477.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="EDITORIAL" />
+      <TextField fx:id="txtEjempResta" alignment="CENTER" editable="false" layoutX="14.0" layoutY="314.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="EjemplaresRestantes" />
+      <TextField fx:id="txtEjempPrest" alignment="CENTER" editable="false" layoutX="14.0" layoutY="369.0" opacity="0.6" prefHeight="36.0" prefWidth="143.0" promptText="EjemplaresPrestados" />
+      <TableView fx:id="tblLibros" layoutX="174.0" layoutY="70.0" prefHeight="496.0" prefWidth="994.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="34.39996337890625" text="ID" />
-          <TableColumn fx:id="colTitle" prefWidth="172.8000144958496" text="TITULO" />
-            <TableColumn fx:id="colISBN" prefWidth="70.40003967285156" text="ISBN" />
-            <TableColumn fx:id="colAnio" prefWidth="66.39996337890625" text="AÑO" />
-            <TableColumn fx:id="colEjemplares" prefWidth="88.0" text="EJEMPLARES" />
-            <TableColumn fx:id="colEjemRest_" prefWidth="140.79998779296875" text="EJEMPLARES RESTANRES" />
-            <TableColumn fx:id="colEjemPrest_" prefWidth="126.4000244140625" text="EJEMPLARES PRESTADOS" />
-            <TableColumn fx:id="colAutor" prefWidth="196.79998779296875" text="AUTOR" />
-            <TableColumn fx:id="colEditorial" minWidth="8.800048828125" prefWidth="148.7999267578125" text="EDITORIAL" />
+          <TableColumn fx:id="colTitle" prefWidth="148.79995727539062" text="TITULO" />
+            <TableColumn fx:id="colISBN" prefWidth="61.5999755859375" text="ISBN" />
+            <TableColumn fx:id="colAnio" prefWidth="82.39999389648438" text="AÑO" />
+            <TableColumn fx:id="colEjemplares" prefWidth="108.0" text="EJEMPLARES" />
+            <TableColumn fx:id="colEjemRest_" prefWidth="120.79998779296875" text="EJEMPLARES RESTANRES" />
+            <TableColumn fx:id="colEjemPrest_" minWidth="0.0" prefWidth="133.5999755859375" text="EJEMPLARES PRESTADOS" />
+            <TableColumn fx:id="colAutor" minWidth="0.0" prefWidth="130.4000244140625" text="AUTOR" />
+            <TableColumn fx:id="colEditorial" minWidth="8.800048828125" prefWidth="108.00002441406252" text="EDITORIAL" />
+            <TableColumn fx:id="colAlta" prefWidth="63.399993896484375" text="ALTA" />
         </columns>
       </TableView>
+      <Label layoutX="14.0" layoutY="554.0" prefHeight="100.0" prefWidth="154.0" text="DEBE INGRESAR EL TIPO DE DATO CORRECTO EN CADA CELDA. (Numero, Palabra)" textAlignment="CENTER" textFill="#ff2121" visible="false" wrapText="true">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

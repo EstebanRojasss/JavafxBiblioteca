@@ -3,7 +3,6 @@ package com.example.javafx.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.io.Serializable;
 
 @Entity @Data
 public class Libro  {
