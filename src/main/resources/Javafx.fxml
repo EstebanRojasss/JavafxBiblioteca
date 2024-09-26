@@ -40,7 +40,7 @@
             <TableColumn fx:id="colAlta" prefWidth="63.399993896484375" text="ALTA" />
         </columns>
       </TableView>
-      <Label layoutX="14.0" layoutY="554.0" prefHeight="100.0" prefWidth="154.0" text="DEBE INGRESAR EL TIPO DE DATO CORRECTO EN CADA CELDA. (Numero, Palabra)" textAlignment="CENTER" textFill="#ff2121" visible="false" wrapText="true">
+      <Label fx:id="lblWarning" layoutX="14.0" layoutY="554.0" prefHeight="100.0" prefWidth="154.0" text="DEBE INGRESAR EL TIPO DE DATO CORRECTO EN CADA CELDA. (Numero, Palabra)" textAlignment="CENTER" textFill="#ff2121" visible="false" wrapText="true">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>

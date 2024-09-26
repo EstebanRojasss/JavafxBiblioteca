@@ -6,6 +6,7 @@ import com.example.javafx.service.LibroService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -83,6 +84,9 @@ public class JavafxController implements Initializable {
     @FXML
     private TableView<Libro> tblLibros;
 
+    @FXML
+    private Label lblWarning;
+
     @Autowired
     LibroService libroService;
 
@@ -109,8 +113,6 @@ public class JavafxController implements Initializable {
             libro.setIsbn(Integer.valueOf(txtISBN.getText()));
             libro.setAnio(Integer.valueOf(txtAnio.getText()));
             libro.setEjemplares(Integer.valueOf(txtEjemplares.getText()));
-            libro.setEjemplaresPrestados(Integer.valueOf(txtEjempPrest.getText()));
-            libro.setEjemplaresRestantes(Integer.valueOf(txtEjempResta.getText()));
             libro.setAlta(true);
             libro.setAutorNombre(txtAutor.getText());
             libro.setEditorialNombre(txtEditorial.getText());
@@ -119,6 +121,7 @@ public class JavafxController implements Initializable {
             limpiarCampo();
         } catch (NumberFormatException e) {
             System.out.println("Se ingreso un tipo de dato incorrecto.");
+            mostrarWarning();
         } catch (Exception e) {
             System.out.println("Ocurrio un error");
         }
@@ -139,9 +142,15 @@ public class JavafxController implements Initializable {
             libroService.actualizarDatosLibro(libro);
             actualizarTabla();
             limpiarCampo();
+        } catch (NumberFormatException e) {
+            mostrarWarning();
         } catch (Exception e) {
             System.out.println("Ocurrio un error en la capa de contronladores.");
         }
+    }
+
+    private void mostrarWarning() {
+        lblWarning.setVisible(true);
     }
 
 
@@ -168,7 +177,7 @@ public class JavafxController implements Initializable {
         txtEjempPrest.setText("");
         txtAutor.setText("");
         txtEditorial.setText("");
-
+        lblWarning.setVisible(false);
     }
 
     private void cargarCampo() {
